@@ -1,7 +1,8 @@
 import reflex as rx
 from link_bio.styles.colors import Color
+from reflex.components.component import NoSSRComponent
 
-class FloatButton(rx.Component):
+class FloatButton(NoSSRComponent):
     library = "antd"
     tag =  "FloatButton"
     # icon = rx.image(src="/icons/donate.svg") # Genera error Unhandled Runtime Error ReferenceError: jsx is not defined
