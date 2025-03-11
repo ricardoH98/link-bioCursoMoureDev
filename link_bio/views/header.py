@@ -8,7 +8,7 @@ from link_bio.styles.colors import TextColor
 from link_bio.styles.colors import Color
 import link_bio.constans as ct
 
-def header() -> rx.Component:
+def header(details:bool=True) -> rx.Component:
     return rx.vstack(
         rx.hstack(
             rx.avatar(
@@ -30,67 +30,77 @@ def header() -> rx.Component:
                 ),
                 rx.hstack(
                     link_icon(
-                        'icons/twitch.svg',
+                        '/icons/github.svg',
                         ct.GITHUB_URL,
                         'GitHub'
                     ),
                     link_icon(
-                        'icons/twitch.svg',
+                        '/icons/x.svg',
                         ct.TWITTER_X_URL,
                         'Twitter/X'
                     ),
                     link_icon(
-                        'icons/twitch.svg',
+                        '/icons/instagram.svg',
                         ct.INSTAGRAM_URL,
                         'Instagram'
                     ),
                     link_icon(
-                        'icons/twitch.svg',
+                        '/icons/tiktok.svg',
                         ct.TIKTOK_URL,
                         'TikTok'
                     ),
                     link_icon(
-                        'icons/twitch.svg',
+                        '/icons/spotify.svg',
                         ct.SPOTIFY_URL,
                         'Spotify'
                     ),
                     link_icon(
-                        'icons/twitch.svg',
+                        '/icons/linkedin.svg',
                         ct.LINKEDIN_URL,
                         'LinkedIn'
                     ),
                     spacing='4'
                 ),
-                align_items= 'start',
+                # align_items= 'start',
                 spacing= '0'
             ),
-            spacing= '5'
+            width='100%',
+            spacing= '5',
+            align_items= 'start',
         ),
-        rx.flex(
-            info_text(
-                f"{experience()}+", 
-                'años de experiencia'
-            ),
-            rx.spacer(),
-            info_text(
-                '100+', 
-                'aplicaciones creadas'
-            ),
-            rx.spacer(),
-            info_text(
-                '+1M', 
-                'seguidores'
-            ),
-            width='100%'
+        rx.cond(
+            details,
+            rx.vstack(
+                rx.flex(
+                    info_text(
+                        f"{experience()}+", 
+                        'años de experiencia'
+                    ),
+                    rx.spacer(),
+                    info_text(
+                        '100+', 
+                        'aplicaciones creadas'
+                    ),
+                    rx.spacer(),
+                    info_text(
+                        '+1M', 
+                        'seguidores'
+                    ),
+                    width='100%'
+                ),
+                rx.text(
+                    f"""
+                    Soy ingeniero de software y actualmente trabajo como freelance
+                    full-stack developer iOS y Android.
+                    Además, creo contenido formativo sobre programación en redes.
+                    Aquí podrás encontrar todos mis enlaces de interés ¡Bienvenid@!
+                    """,
+                    color = TextColor.BODY.value,
+                    font_size=Size.DEFAULT.value
+                ),
+                spacing = '6'
+            )
         ),
-        rx.text(
-            f""" 
-            Soy ingeniero de software con más de {experience()} años de experiencia que le encanta la programación y aprender nuevas tecnologías, tengo un enfoque en la automatización y en encontrar soluciones a problemas. 
-            """,
-            color = TextColor.BODY.value,
-            font_size=Size.DEFAULT.value
-        ),
-
         spacing= '6',
         align_items= 'start'
     )
@@ -99,10 +109,3 @@ def experience() -> int:
     return datetime.date.today().year - 2010
 
 
-    # return rx.vstack(
-    #     rx.avatar(fallback= 'RH', size='5', radius="full"),
-    #     rx.text("@richi"),
-    #     rx.text("HOLA MI NOMBRES ES RICARDO HEREDIA"),
-    #     rx.text(""" Soy ingeniero industrial que le encanta la programación y aprender nuevas tecnologías, tengo un enfoque en la automatización y en encontrar soluciones a problemas. """),
-    #     align='center'
-    # )

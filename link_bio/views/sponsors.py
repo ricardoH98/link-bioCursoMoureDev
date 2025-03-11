@@ -8,19 +8,24 @@ def sponsors() -> rx.Component:
         title('Colaboran','8'),
         rx.grid(
             link_sponsor(
-                "elgato.png",
+                "/elgato.png",
                 ct.ELGATO_URL,
                 'Logotipo de el gato'
             ),
             link_sponsor(
-                "mvp.png",
+                "/mvp.png",
                 ct.MVP_URL,
                 'Logotipo de Microsoft MVP'
             ),
+            link_sponsor(
+                "/githubstar.png",
+                ct.GITHUB_STAR_URL,
+                'Logotipo de Github Star'
+            ),            
             spacing='8',
             columns= rx.breakpoints(
                 initial='1',
-                xs='2'
+                xs='3'
             )
         ),
         width='100%',

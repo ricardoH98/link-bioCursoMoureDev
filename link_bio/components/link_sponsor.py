@@ -6,7 +6,8 @@ def link_sponsor(imagen: str, url: str, alt: str) -> rx.Component:
     return rx.link(
         rx.image(
             src= imagen,
-            height= Size.VERYBIG.value,
+            height= "3.5em",
+            aspect_ratio="5 / 2",
             width='auto',
             alt=alt
         ),

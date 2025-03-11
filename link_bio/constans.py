@@ -1,3 +1,7 @@
+# General
+G_TAG = "G-3YGHT3XJFS"
+
+
 # Cabecera
 GITHUB_URL = "https://github.com"
 TWITTER_X_URL = "https://x.com/"

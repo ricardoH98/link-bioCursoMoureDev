@@ -1,48 +1,26 @@
 """Welcome to Reflex! This file outlines the steps to create a basic app."""
 
 import reflex as rx
-from link_bio.components.navbar import navbar
-from link_bio.components.footer import footer
-from link_bio.views.header.header import header
-from link_bio.views.links.links import links
-from link_bio.views.sponsors.sponsors import sponsors
 from link_bio.styles import styles as styles
-from rxconfig import config
-
-
-# class State(rx.State):
-#     """The app state."""
-
-#     ...
-
-# Estructura de la página
-def index() -> rx.Component:
-    # Welcome Page (Index)
-    return rx.box(
-            navbar(),
-            rx.center(
-                rx.vstack(
-                    header(),
-                    links(),
-                    sponsors(),
-                    align='center',
-                    max_width=styles.MAX_WIDTH,
-                    width='100%',
-                    margin_y= styles.Size.BIG.value,
-                    padding = styles.Size.BIG.value
-                )
-            ),
-            footer()
-        )
+from link_bio.pages.index import index
+from link_bio.pages.courses import courses
 
 
 app = rx.App(
-    style= styles.BASE_STYLE,
-    stylesheets= styles.STYLESHEETS
+    stylesheets=styles.STYLESHEETS,
+    style=styles.BASE_STYLE,
+    head_components=[
+        rx.script(
+            src=f"https://www.googletagmanager.com/gtag/js?id=G-3YGHT3XJFS"),
+        rx.script(
+            f"""
+window.dataLayer = window.dataLayer || [];
+function gtag(){{dataLayer.push(arguments);}}
+gtag('js', new Date());
+gtag('config', 'G-3YGHT3XJFS');
+"""
+        ),
+    ],
 )
-app.add_page(
-    index,
-    title='MoureDev | Te enseño programación y desarrollo de Software',
-    description='Hola, mi nombre es Brais Moure. Soy ing de software....'
-)
+
 
