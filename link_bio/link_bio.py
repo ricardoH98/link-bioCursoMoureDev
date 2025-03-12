@@ -5,6 +5,8 @@ from link_bio.styles import styles as styles
 from link_bio.pages.index import index
 from link_bio.pages.courses import courses
 
+class State(rx.State):
+    pass
 
 app = rx.App(
     stylesheets=styles.STYLESHEETS,
