@@ -4,9 +4,11 @@ import reflex as rx
 from link_bio.styles import styles as styles
 from link_bio.pages.index import index
 from link_bio.pages.courses import courses
+from rxconfig import config
 
 class State(rx.State):
     """ Build your backend """
+
 
 app = rx.App(
     stylesheets=styles.STYLESHEETS,
