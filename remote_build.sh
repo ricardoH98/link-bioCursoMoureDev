@@ -1,8 +1,6 @@
 cd .
-pip list
 python -m venv .venv
 source .venv/bin/activate
-pip list
 pip install --upgrade pip
 pip install -r requirements.txt
 rm -rf public
