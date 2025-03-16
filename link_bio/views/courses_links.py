@@ -3,7 +3,7 @@ from link_bio.routes import Route
 import link_bio.constans as ct
 from link_bio.components.link_button import link_button
 from link_bio.components.title import title
-
+from link_bio.styles.styles import Size, Color
 
 def courses_links() -> rx.Component:
     return rx.vstack(
@@ -13,6 +13,7 @@ def courses_links() -> rx.Component:
             'Ruta de estudio semanal para practicar lógica de programación',
             '/icons/challenges.png',
             ct.CODE_CHALLENGES_URL,
+            highlight_color= Color.SECUNDARY.value
         ),
         link_button(
             "JavaScript desde cero",

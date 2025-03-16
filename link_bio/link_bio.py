@@ -5,9 +5,8 @@ from link_bio.styles import styles as styles
 from link_bio.pages.index import index
 from link_bio.pages.courses import courses
 from rxconfig import config
+from link_bio.api.api import repo, live
 
-class State(rx.State):
-    """ Build your backend """
 
 
 app = rx.App(
@@ -27,4 +26,6 @@ gtag('config', 'G-3YGHT3XJFS');
     ],
 )
 
-
+# Colocando esta línea, hacemos que la api sea pública a traves del link donde está desplegado el backend y /repo
+app.api.add_api_route('/repo', repo)
+app.api.add_api_route('/live/{user}', live)

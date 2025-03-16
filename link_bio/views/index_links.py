@@ -3,6 +3,7 @@ from link_bio.routes import Route
 import link_bio.constans as ct
 from link_bio.components.link_button import link_button
 from link_bio.components.title import title
+from link_bio.styles.styles import Color
 
 
 def index_links() -> rx.Component:
@@ -13,7 +14,8 @@ def index_links() -> rx.Component:
             'Consulta mis tutoriales para aprender programación',
             '/icons/code.svg',
             Route.COURSES.value,
-            is_external=False
+            is_external=False,
+            highlight_color= Color.SECUNDARY.value
         ),        
         link_button(
             'Twitch',

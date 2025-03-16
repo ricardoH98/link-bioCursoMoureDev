@@ -3,24 +3,48 @@ import datetime
 from link_bio.components.link_icon import link_icon
 from link_bio.components.info_text import info_text
 from link_bio.components.title import title
+from link_bio.components.link_button import link_button
 from link_bio.styles.styles import Size
 from link_bio.styles.colors import TextColor
 from link_bio.styles.colors import Color
 import link_bio.constans as ct
 
-def header(details:bool=True) -> rx.Component:
+def header(details:bool=True, live:bool = False, live_title:str = "") -> rx.Component:
     return rx.vstack(
         rx.hstack(
-            rx.avatar(
-                fallback= 'BM',
-                src='/avatar.jpg', 
-                size='8', 
-                radius="full",
-                color_scheme='gray',
-                # background_color= Color.CONTENT.value,
-                padding='2px',
-                border='4px',
-                border_color=Color.PRIMARY.value
+            rx.box(
+                rx.cond(
+                    live,
+                    rx.link(
+                        rx.image(
+                            src="/icons/twitch.svg",
+                            height=Size.DEFAULT.value,
+                            width=Size.DEFAULT.value
+                        ),
+                        href=ct.TWITCH_URL,
+                        is_external=True,
+                        class_name="blink",
+                        border_radius="50%",
+                        padding=Size.SMALL.value,
+                        bg=Color.PURPLE.value,
+                        position="absolute",
+                        bottom="0",
+                        right="0"
+                    )
+                ),        
+                rx.avatar(
+
+                    fallback= 'BM',
+                    src='/avatar.jpg', 
+                    size='8', 
+                    radius="full",
+                    color_scheme='gray',
+                    # background_color= Color.CONTENT.value,
+                    padding='2px',
+                    border='4px',
+                    border_color=Color.PRIMARY.value,
+                ),
+                position='relative'
             ),
             rx.vstack(
                 title('Brais Moure','8'),
@@ -87,6 +111,16 @@ def header(details:bool=True) -> rx.Component:
                         'seguidores'
                     ),
                     width='100%'
+                ),
+                rx.cond(
+                    live,
+                    link_button(
+                        "En directo",
+                        live_title,
+                        "icons/twitch.svg",
+                        ct.TWITCH_URL,
+                        highlight_color= Color.PURPLE.value
+                    )
                 ),
                 rx.text(
                     f"""

@@ -9,6 +9,7 @@ from link_bio.views.sponsors import sponsors
 from link_bio.styles import styles as styles
 from link_bio.routes import Route
 from rxconfig import config
+from link_bio.state.PageState import PageState
 
 
 # Estructura de la página
@@ -17,7 +18,8 @@ from rxconfig import config
         title= utils.courses_title,
         description= utils.courses_description,
         image= utils.preview,
-        meta= utils.courses_meta
+        meta= utils.courses_meta,
+        on_load= PageState.check_live
 )
 def courses() -> rx.Component:
 
@@ -26,7 +28,10 @@ def courses() -> rx.Component:
             navbar(),
             rx.center(
                 rx.vstack(
-                    header(details=False),
+                    header(
+                        details=False,
+                        live= PageState.is_live,
+                    ),
                     courses_links(),
                     sponsors(),
                     align='start',

@@ -9,7 +9,9 @@ MAX_WIDTH = '600px'
 
 STYLESHEETS = [
     "https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap",
-    "https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap"
+    "https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap",
+    "/css/styles.css"
+    
 ]
 
 
@@ -40,6 +42,7 @@ BASE_STYLE = {
         "background_color": Color.CONTENT.value,
         "text_align": "start",
         "color": TextColor.HEADER.value,
+        "border_style": "solid",
         "_hover": {
             "background_color": Color.SECUNDARY.value,
 
