@@ -2,9 +2,11 @@ import reflex as rx
 from link_bio.routes import Route
 import link_bio.constans as ct
 from link_bio.components.link_button import link_button
+from link_bio.components.featured_links import featured_links
 from link_bio.components.title import title
 from link_bio.styles.styles import Color
-
+from link_bio.model.Featured import Featured
+from link_bio.state.PageState import PageState
 
 def index_links() -> rx.Component:
     return rx.vstack(
@@ -41,7 +43,22 @@ def index_links() -> rx.Component:
             '/icons/youtube.svg',
             ct.YOUTUBE_SECONDARY_URL
         ),
-
+        rx.cond(
+            PageState.featured_info,
+            rx.vstack(
+                title("Destacado",'8'),
+                rx.grid(
+                    rx.foreach(
+                        PageState.featured_info,
+                        featured_links
+                    ),
+                    columns=rx.breakpoints(initial="1", sm="2"),
+                    spacing='4'
+                ),
+                spacing='4'
+                
+            )
+        ),
         title('Recursos y más', '8'),
         link_button(
             'Git y Git Hub desde cero',
@@ -88,5 +105,6 @@ def index_links() -> rx.Component:
             f'mailto:{ct.EMAIL}'
         ),        
         width='100%',
-        spacing='4'
+        spacing='4',
+        on_mount=PageState.featured_links
     )

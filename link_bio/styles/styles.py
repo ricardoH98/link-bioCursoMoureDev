@@ -5,11 +5,14 @@ import reflex as rx
 
 # Constants
 MAX_WIDTH = '600px'
+FADEIN_ANIMATION = "animate__animated animate__fadeIn"
+BOUNCEIN_ANIMATION = "animate__animated animate__bounceIn"
 
 
 STYLESHEETS = [
     "https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap",
     "https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap",
+    "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css",
     "/css/styles.css"
     
 ]
@@ -24,6 +27,17 @@ class Size(Enum):
     LARGE = "1.5em"
     BIG = '2em',
     VERYBIG = '4em'
+
+class Spacing(Enum):
+    ZERO = "0"
+    VERY_SMALL = "1"
+    SMALL = "3"
+    DEFAULT = "4"
+    LARGE = "5"
+    BIG = "6"
+    MEDIUM_BIG = "7"
+    VERY_BIG = "9"
+
 
 # Styles
 # Estilos para aplicar a toda la aplicación

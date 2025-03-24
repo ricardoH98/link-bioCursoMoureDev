@@ -7,14 +7,16 @@ from link_bio.components.link_button import link_button
 from link_bio.styles.styles import Size
 from link_bio.styles.colors import TextColor
 from link_bio.styles.colors import Color
+from link_bio.state.PageState import PageState
 import link_bio.constans as ct
 
-def header(details:bool=True, live:bool = False, live_title:str = "") -> rx.Component:
+
+def header(details:bool=True) -> rx.Component:
     return rx.vstack(
         rx.hstack(
             rx.box(
                 rx.cond(
-                    live,
+                    PageState.live_status.live,
                     rx.link(
                         rx.image(
                             src="/icons/twitch.svg",
@@ -43,6 +45,7 @@ def header(details:bool=True, live:bool = False, live_title:str = "") -> rx.Comp
                     padding='2px',
                     border='4px',
                     border_color=Color.PRIMARY.value,
+                    alt="Avatar Mouredev"
                 ),
                 position='relative'
             ),
@@ -113,13 +116,32 @@ def header(details:bool=True, live:bool = False, live_title:str = "") -> rx.Comp
                     width='100%'
                 ),
                 rx.cond(
-                    live,
+                    PageState.live_status.live,
+
                     link_button(
                         "En directo",
-                        live_title,
+                        PageState.live_status.title,
                         "icons/twitch.svg",
                         ct.TWITCH_URL,
-                        highlight_color= Color.PURPLE.value
+                        highlight_color= Color.PURPLE.value,
+                        animated=True
+                    ),
+
+                    rx.box(
+                        rx.cond(
+                            PageState.next_live,
+                            link_button(
+                                "Próximo directo",
+                                PageState.next_live,
+                                "/icons/twitch.svg",
+                                ct.TWITCH_URL,
+                                highlight_color= Color.PURPLE.value,
+                                animated=True
+                            ),
+                        ),
+                        width="100%",
+                        on_mount=PageState.check_schedule
+
                     )
                 ),
                 rx.text(
@@ -136,7 +158,8 @@ def header(details:bool=True, live:bool = False, live_title:str = "") -> rx.Comp
             )
         ),
         spacing= '6',
-        align_items= 'start'
+        align_items= 'start',
+        on_mount=PageState.check_live
     )
 
 def experience() -> int:

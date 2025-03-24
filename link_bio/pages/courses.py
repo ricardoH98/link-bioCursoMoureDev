@@ -10,7 +10,7 @@ from link_bio.styles import styles as styles
 from link_bio.routes import Route
 from rxconfig import config
 from link_bio.state.PageState import PageState
-
+from link_bio.model.Live import Live
 
 # Estructura de la página
 @rx.page(
@@ -30,7 +30,6 @@ def courses() -> rx.Component:
                 rx.vstack(
                     header(
                         details=False,
-                        live= PageState.is_live,
                     ),
                     courses_links(),
                     sponsors(),

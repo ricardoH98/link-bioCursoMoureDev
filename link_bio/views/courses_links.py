@@ -5,6 +5,7 @@ from link_bio.components.link_button import link_button
 from link_bio.components.title import title
 from link_bio.styles.styles import Size, Color
 
+
 def courses_links() -> rx.Component:
     return rx.vstack(
         title('Cursos gratis', '8'),

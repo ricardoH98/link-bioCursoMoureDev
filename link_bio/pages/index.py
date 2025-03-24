@@ -11,7 +11,7 @@ from link_bio.routes import Route
 from rxconfig import config
 from link_bio.api.api import repo, live
 from link_bio.state.PageState import PageState
-
+from link_bio.model.Live import Live
 
 # Estructura de la página
 @rx.page(
@@ -20,7 +20,7 @@ from link_bio.state.PageState import PageState
         description= utils.index_description,
         image= utils.preview,
         meta= utils.index_meta,
-        on_load= PageState.check_live
+        # on_load= [PageState.check_live, PageState.featured_links, PageState.check_schedule]
 )
 def index() -> rx.Component:
     # Welcome Page (Index)
@@ -29,19 +29,9 @@ def index() -> rx.Component:
             navbar(),
             rx.center(
                 rx.vstack(
-                    # rx.text(IndexState.say_hello), # Puede renderizar porque el método sayhello de la clase IndexState se comporta como un computed var.
-                    header(
-                        live= PageState.is_live,
-                        # live= True,
-                        live_title= PageState.live_title
-                    ),
+                    header(),
                     index_links(),
                     sponsors(),
-                    rx.button(
-                        "holaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                        border_color= None,
-                        border_style= "None"
-                    ),
                     align='center',
                     max_width=styles.MAX_WIDTH,
                     width='100%',
